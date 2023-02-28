@@ -3,10 +3,10 @@
 const program = require('commander');
 
 program
-  .version('1.0.0')
+  .name('gendiff')
+  .arguments('<filepath1> <filepath2>')
   .description('Compares two configuration files and shows a difference.')
-  .parse(process.argv);
+  .version('1.0.0')
+  .option('-f, --format <type>', 'output format');
 
-// const opts = program.opts();
-
-// if (opts.code) console.log("YOU dsds");
+program.parse(process.argv);
