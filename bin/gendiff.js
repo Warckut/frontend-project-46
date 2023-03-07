@@ -3,7 +3,7 @@
 const program = require('commander');
 const fs = require('fs');
 
-const { gendiff } = require('../src/index.js');
+const { gendiff } = require('../lib/gendiff.js');
 
 const getDataFile = (filepath) => JSON.parse(fs.readFileSync(filepath));
 
