@@ -2,22 +2,18 @@ env:
   browser: true
   commonjs: true
   es2021: true
-  # jest: true
+  jest: true
 extends: airbnb-base
 overrides: []
-plugins: [jest]
+plugins: [eslint-plugin-jest]
 parserOptions:
   ecmaVersion: latest
   sourceType: module
 rules:
-#  "eqeqeq": "on",
-  jest/no-disabled-tests: warn,
-  jest/no-focused-tests: error,
-  jest/no-identical-title: error,
-  jest/prefer-to-have-length: warn,
   jest/valid-expect: error
+#  "eqeqeq": "on",
   no-console: 0
-  import/extensions: # FIXME: remove when rule will be adjusted for new nodejs version
+  import/extensions:
     - error
     - ignorePackages
     - js: always
