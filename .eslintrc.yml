@@ -3,15 +3,15 @@ env:
   commonjs: true
   es2021: true
   jest: true
-extends: airbnb-base
-overrides: []
-plugins: [eslint-plugin-jest]
+extends: 
+  - 'airbnb-base'
+  - 'plugin:jest/recommended'
+plugins: 
+  - jest
 parserOptions:
   ecmaVersion: latest
   sourceType: module
 rules:
-  jest/valid-expect: error
-#  "eqeqeq": "on",
   no-console: 0
   import/extensions:
     - error

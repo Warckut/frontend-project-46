@@ -1,30 +1,16 @@
-const { gendiff } = require('../lib/gendiff.js');
+const fs = require('fs');
+const { genDiff } = require('../lib/genDiff.js');
 
-let dF1;
-let dF2;
+test('genDiff', () => {
+  const df1 = JSON.parse(fs.readFileSync(`${__dirname}/__fixtures__/file1.json`));
+  const df2 = JSON.parse(fs.readFileSync(`${__dirname}/__fixtures__/file2.json`));
 
-beforeEach(() => {
-  dF1 = {
-    host: 'hexlet.io',
-    timeout: 50,
-    proxy: '123.234.53.22',
-    follow: false,
-  };
+  const expectedValue = '- follow false\n'
+    + '  host hexlet.io\n'
+    + '- proxy 123.234.53.22\n'
+    + '- timeout 50\n'
+    + '+ timeout 20\n'
+    + '+ verbose true\n';
 
-  dF2 = {
-    timeout: 20,
-    verbose: true,
-    host: 'hexlet.io',
-  };
-});
-
-test('test', () => {
-  expect(gendiff(dF1, dF2)).toEqual([
-    { key: 'follow', typeDiff: '-', value: false },
-    { key: 'host', typeDiff: ' ', value: 'hexlet.io' },
-    { key: 'proxy', typeDiff: '-', value: '123.234.53.22' },
-    { key: 'timeout', typeDiff: '-', value: 50 },
-    { key: 'timeout', typeDiff: '+', value: 20 },
-    { key: 'verbose', typeDiff: '+', value: true },
-  ]);
+  expect(genDiff(df1, df2)).toEqual(expectedValue);
 });

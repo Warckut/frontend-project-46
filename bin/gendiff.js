@@ -3,7 +3,7 @@
 const program = require('commander');
 const fs = require('fs');
 
-const { gendiff } = require('../lib/gendiff.js');
+const { genDiff } = require('../lib/genDiff.js');
 
 const getDataFile = (filepath) => JSON.parse(fs.readFileSync(filepath));
 
@@ -17,11 +17,9 @@ program
     const dF1 = getDataFile(filepath1);
     const dF2 = getDataFile(filepath2);
 
-    const diffs = gendiff(dF1, dF2);
+    const diffs = genDiff(dF1, dF2);
 
-    diffs.forEach(({ key, typeDiff, value }) => {
-      console.log(`${typeDiff} ${key} ${value}`);
-    });
+    console.log(diffs);
   });
 
 program.parse(process.argv);
