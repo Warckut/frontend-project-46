@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 
 const program = require('commander');
-const fs = require('fs');
 
 const { genDiff } = require('../lib/genDiff.js');
-
-const getDataFile = (filepath) => JSON.parse(fs.readFileSync(filepath));
+const { parseFile } = require('../lib/parsers.js');
 
 program
   .name('gendiff')
@@ -14,8 +12,8 @@ program
   .version('1.0.0')
   .option('-f, --format <type>', 'output format')
   .action((filepath1, filepath2) => {
-    const dF1 = getDataFile(filepath1);
-    const dF2 = getDataFile(filepath2);
+    const dF1 = parseFile(filepath1);
+    const dF2 = parseFile(filepath2);
 
     const diffs = genDiff(dF1, dF2);
 

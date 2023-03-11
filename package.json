@@ -23,6 +23,7 @@
   "dependencies": {
     "commander": "^10.0.0",
     "fs": "^0.0.1-security",
+    "js-yaml": "^4.1.0",
     "link": "^1.5.1",
     "lodash": "^4.17.21",
     "publish": "^0.6.0"
