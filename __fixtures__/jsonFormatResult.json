@@ -1,0 +1,152 @@
+{
+  "0": {
+      "key": "common",
+      "typeDiff": "NOT_CHANGED",
+      "value": {
+          "0": {
+              "key": "follow",
+              "typeDiff": "ADDED",
+              "value": "false"
+          },
+          "1": {
+              "key": "setting1",
+              "typeDiff": "NOT_CHANGED",
+              "value": "Value 1"
+          },
+          "2": {
+              "key": "setting2",
+              "typeDiff": "REMOVED",
+              "value": "200"
+          },
+          "3": {
+              "key": "setting3",
+              "typeDiff": "UPDATED",
+              "value": "true",
+              "assignedValue": "null"
+          },
+          "4": {
+              "key": "setting4",
+              "typeDiff": "ADDED",
+              "value": "blah blah"
+          },
+          "5": {
+              "key": "setting5",
+              "typeDiff": "ADDED",
+              "value": {
+                  "0": {
+                      "key": "key5",
+                      "typeDiff": "NOT_CHANGED",
+                      "value": "value5"
+                  }
+              }
+          },
+          "6": {
+              "key": "setting6",
+              "typeDiff": "NOT_CHANGED",
+              "value": {
+                  "0": {
+                      "key": "doge",
+                      "typeDiff": "NOT_CHANGED",
+                      "value": {
+                          "0": {
+                              "key": "wow",
+                              "typeDiff": "UPDATED",
+                              "value": "",
+                              "assignedValue": "so much"
+                          }
+                      }
+                  },
+                  "1": {
+                      "key": "key",
+                      "typeDiff": "NOT_CHANGED",
+                      "value": "value"
+                  },
+                  "2": {
+                      "key": "ops",
+                      "typeDiff": "ADDED",
+                      "value": "vops"
+                  }
+              }
+          }
+      }
+  },
+  "1": {
+      "key": "group1",
+      "typeDiff": "NOT_CHANGED",
+      "value": {
+          "0": {
+              "key": "baz",
+              "typeDiff": "UPDATED",
+              "value": "bas",
+              "assignedValue": "bars"
+          },
+          "1": {
+              "key": "foo",
+              "typeDiff": "NOT_CHANGED",
+              "value": "bar"
+          },
+          "2": {
+              "key": "nest",
+              "typeDiff": "UPDATED",
+              "value": {
+                  "0": {
+                      "key": "key",
+                      "typeDiff": "NOT_CHANGED",
+                      "value": "value"
+                  }
+              },
+              "assignedValue": "str"
+          }
+      }
+  },
+  "2": {
+      "key": "group2",
+      "typeDiff": "REMOVED",
+      "value": {
+          "0": {
+              "key": "abc",
+              "typeDiff": "NOT_CHANGED",
+              "value": "12345"
+          },
+          "1": {
+              "key": "deep",
+              "typeDiff": "NOT_CHANGED",
+              "value": {
+                  "0": {
+                      "key": "id",
+                      "typeDiff": "NOT_CHANGED",
+                      "value": "45"
+                  }
+              }
+          }
+      }
+  },
+  "3": {
+      "key": "group3",
+      "typeDiff": "ADDED",
+      "value": {
+          "0": {
+              "key": "deep",
+              "typeDiff": "NOT_CHANGED",
+              "value": {
+                  "0": {
+                      "key": "id",
+                      "typeDiff": "NOT_CHANGED",
+                      "value": {
+                          "0": {
+                              "key": "number",
+                              "typeDiff": "NOT_CHANGED",
+                              "value": "45"
+                          }
+                      }
+                  }
+              }
+          },
+          "1": {
+              "key": "fee",
+              "typeDiff": "NOT_CHANGED",
+              "value": "100500"
+          }
+      }
+  }
+}
