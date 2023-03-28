@@ -10,14 +10,15 @@ program
   .arguments('<filepath1> <filepath2>')
   .description('Compares two configuration files and shows a difference.')
   .version('1.0.0')
-  .option('-f, --format <type>', 'output format')
+  .option('-f, --format <type>', 'output format');
+
+const options = program.opts();
+
+program
   .action((filepath1, filepath2) => {
     const dF1 = parseFile(filepath1);
     const dF2 = parseFile(filepath2);
-
-    const diffs = genDiff(dF1, dF2);
-
-    console.log(diffs);
-  });
-
-program.parse(process.argv);
+    const output = genDiff(dF1, dF2, options?.format);
+    console.log(output);
+  })
+  .parse(process.argv);
