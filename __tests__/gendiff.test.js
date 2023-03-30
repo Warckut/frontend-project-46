@@ -17,7 +17,7 @@ test('genDiff (json)', () => {
 test('genDiff (yml/yaml)', () => {
   const df1 = parseFile(getFixturePath('file1.yml'));
   const df2 = parseFile(getFixturePath('file2.yml'));
-  const expected = readFile('defaultFormatResult.txt');
+  const expected = readFile('stylishFormatResult.txt');
   expect(genDiff(df1, df2)).toEqual(expected);
 });
 
