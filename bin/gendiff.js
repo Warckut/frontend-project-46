@@ -1,24 +1,16 @@
 #!/usr/bin/env node
+import { program } from 'commander';
 
-const program = require('commander');
-
-const { genDiff } = require('../lib/genDiff.js');
-const { parseFile } = require('../lib/parsers.js');
+import genDiff from '../lib/genDiff.js';
 
 program
   .name('gendiff')
   .arguments('<filepath1> <filepath2>')
   .description('Compares two configuration files and shows a difference.')
   .version('1.0.0')
-  .option('-f, --format <type>', 'output format');
-
-const options = program.opts();
-
-program
+  .option('-f, --format <type>', 'output format', 'stylish')
   .action((filepath1, filepath2) => {
-    const dF1 = parseFile(filepath1);
-    const dF2 = parseFile(filepath2);
-    const output = genDiff(dF1, dF2, options?.format);
+    const output = genDiff(filepath1, filepath2, program.opts().format);
     console.log(output);
   })
   .parse(process.argv);
