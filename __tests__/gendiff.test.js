@@ -1,36 +1,37 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
-const { genDiff } = require('../lib/genDiff.js');
-const { parseFile } = require('../lib/parsers.js');
+import { fileURLToPath } from 'url';
+import genDiff from '../lib/genDiff.js';
+
+// eslint-disable-next-line no-underscore-dangle
+const __filename = fileURLToPath(import.meta.url);
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = path.dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
 test('genDiff (json)', () => {
-  const df1 = parseFile(getFixturePath('file1.json'));
-  const df2 = parseFile(getFixturePath('file2.json'));
+  const received = genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'stylish');
   const expected = readFile('stylishFormatResult.txt');
-  expect(genDiff(df1, df2)).toEqual(expected);
+  expect(received).toEqual(expected);
 });
 
 test('genDiff (yml/yaml)', () => {
-  const df1 = parseFile(getFixturePath('file1.yml'));
-  const df2 = parseFile(getFixturePath('file2.yml'));
+  const received = genDiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'), 'stylish');
   const expected = readFile('stylishFormatResult.txt');
-  expect(genDiff(df1, df2)).toEqual(expected);
+  expect(received).toEqual(expected);
 });
 
 test('genDiff plain format', () => {
-  const df1 = parseFile(getFixturePath('file1.json'));
-  const df2 = parseFile(getFixturePath('file2.json'));
+  const received = genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'plain');
   const expected = readFile('plainFormatResult.txt');
-  expect(genDiff(df1, df2, 'plain')).toEqual(expected);
+  expect(received).toEqual(expected);
 });
 
 test('genDiff json format', () => {
-  const df1 = parseFile(getFixturePath('file1.json'));
-  const df2 = parseFile(getFixturePath('file2.json'));
+  const received = genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'json');
   const expected = readFile('jsonFormatResult.json');
-  expect(genDiff(df1, df2, 'json')).toEqual(expected);
+  expect(received).toEqual(expected);
 });
