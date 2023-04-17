@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { program } from 'commander';
 
-import genDiff from '../lib/genDiff.js';
+import genDiff from '../index.js';
 
 program
   .name('gendiff')
