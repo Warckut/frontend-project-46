@@ -22,7 +22,6 @@
   "homepage": "https://github.com/Warckut/frontend-project-46#readme",
   "dependencies": {
     "commander": "^10.0.0",
-    "fs": "^0.0.1-security",
     "js-yaml": "^4.1.0",
     "link": "^1.5.1",
     "lodash": "^4.17.21",
