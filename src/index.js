@@ -2,21 +2,21 @@ import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
 
-import TypeDiff from './TypeDiff.js';
+import TypesDiff from './TypesDiff.js';
 import createFormatter from './formatters/index.js';
 import getParser from './parsers.js';
 
 const getDataFile = (filepath) => {
-  const toParse = getParser(path.extname(filepath));
-  return toParse(fs.readFileSync(filepath, 'utf-8'));
+  const parser = getParser(path.extname(filepath));
+  return parser(fs.readFileSync(filepath, 'utf-8'));
 };
 
 const getTypeDiff = (val1, val2) => {
-  if (val1 === undefined) return TypeDiff.ADDED;
-  if (val2 === undefined) return TypeDiff.REMOVED;
-  if (_.isPlainObject(val1) && _.isPlainObject(val2)) return TypeDiff.BOTH_OBJECTS;
-  if (val1 === val2) return TypeDiff.UNCHANGED;
-  return TypeDiff.UPDATED;
+  if (val1 === undefined) return TypesDiff.ADDED;
+  if (val2 === undefined) return TypesDiff.REMOVED;
+  if (_.isPlainObject(val1) && _.isPlainObject(val2)) return TypesDiff.BOTH_OBJECTS;
+  if (val1 === val2) return TypesDiff.UNCHANGED;
+  return TypesDiff.UPDATED;
 };
 
 const objToArray = (node) => {
@@ -24,36 +24,36 @@ const objToArray = (node) => {
 
   return Object
     .entries(node)
-    .map(([key, value]) => ({ key, typeDiff: TypeDiff.UNCHANGED, value: objToArray(value) }));
+    .map(([key, value]) => ({ key, typeDiff: TypesDiff.UNCHANGED, value: objToArray(value) }));
 };
 
 const createDiffGenerator = (typeDiff) => {
   switch (typeDiff) {
-    case TypeDiff.ADDED:
+    case TypesDiff.ADDED:
       return (key, val1, val2) => ({
         key,
         typeDiff,
         value: objToArray(val2),
       });
-    case TypeDiff.REMOVED:
+    case TypesDiff.REMOVED:
       return (key, val1) => ({
         key,
         typeDiff,
         value: objToArray(val1),
       });
-    case TypeDiff.BOTH_OBJECTS:
+    case TypesDiff.BOTH_OBJECTS:
       return (key, val1, val2, recFunc) => ({
         key,
         typeDiff,
         value: recFunc(val1, val2),
       });
-    case TypeDiff.UNCHANGED:
+    case TypesDiff.UNCHANGED:
       return (key, val1) => ({
         key,
         typeDiff,
         value: objToArray(val1),
       });
-    case TypeDiff.UPDATED:
+    case TypesDiff.UPDATED:
       return (key, val1, val2) => ({
         key,
         typeDiff,
@@ -81,7 +81,7 @@ const buildTree = (node1, node2) => {
   return children;
 };
 
-const genDiff = (filepath1, filepath2, formatName) => {
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
   const data1 = getDataFile(filepath1);
   const data2 = getDataFile(filepath2);
 

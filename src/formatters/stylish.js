@@ -1,4 +1,4 @@
-import TypeDiffs from '../TypeDiff.js';
+import TypesDiff from '../TypesDiff.js';
 
 const stylish = (tree, replacer = ' ', spacesCount = 2) => {
   const iter = (currentValue, depth) => {
@@ -17,15 +17,15 @@ const stylish = (tree, replacer = ' ', spacesCount = 2) => {
         assignedValue,
       }) => {
         switch (typeDiff) {
-          case TypeDiffs.ADDED:
+          case TypesDiff.ADDED:
             return `${currentIndent}+ ${key}: ${iter(value, depth + 2)}`;
-          case TypeDiffs.REMOVED:
+          case TypesDiff.REMOVED:
             return `${currentIndent}- ${key}: ${iter(value, depth + 2)}`;
-          case TypeDiffs.BOTH_OBJECTS:
+          case TypesDiff.BOTH_OBJECTS:
             return `${currentIndent}  ${key}: ${iter(value, depth + 2)}`;
-          case TypeDiffs.UNCHANGED:
+          case TypesDiff.UNCHANGED:
             return `${currentIndent}  ${key}: ${iter(value, depth + 2)}`;
-          case TypeDiffs.UPDATED:
+          case TypesDiff.UPDATED:
             return `${currentIndent}- ${key}: ${iter(value, depth + 2)}\n`
               + `${currentIndent}+ ${key}: ${iter(assignedValue, depth + 2)}`;
           default:

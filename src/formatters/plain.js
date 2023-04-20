@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import Operations from '../TypeDiff.js';
+import TypesDiff from '../TypesDiff.js';
 
 const getValueOutput = (value) => {
   if (_.isObject(value)) {
@@ -29,15 +29,15 @@ const plain = (tree) => {
         const value1 = getValueOutput(value);
         const value2 = getValueOutput(assignedValue);
         switch (typeDiff) {
-          case Operations.ADDED:
+          case TypesDiff.ADDED:
             return `Property '${keys}' was added with value: ${value1}`;
-          case Operations.REMOVED:
+          case TypesDiff.REMOVED:
             return `Property '${keys}' was removed`;
-          case Operations.UNCHANGED:
+          case TypesDiff.UNCHANGED:
             return iter(value, `${keys}.`);
-          case Operations.BOTH_OBJECTS:
+          case TypesDiff.BOTH_OBJECTS:
             return iter(value, `${keys}.`);
-          case Operations.UPDATED:
+          case TypesDiff.UPDATED:
             return `Property '${keys}' was updated. From ${value1} to ${value2}`;
           default:
             return '';

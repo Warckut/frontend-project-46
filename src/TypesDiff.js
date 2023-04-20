@@ -1,4 +1,4 @@
-const TypeDiff = {
+const TypesDiff = {
   UNCHANGED: 'NOT_CHANGED',
   ADDED: 'ADDED',
   REMOVED: 'REMOVED',
@@ -6,4 +6,4 @@ const TypeDiff = {
   BOTH_OBJECTS: 'BOTH_OBJECTS',
 };
 
-export default TypeDiff;
+export default TypesDiff;

@@ -4,9 +4,9 @@ import plain from './plain.js';
 const formats = {
   stylish,
   plain,
-  json: (value) => JSON.stringify(value, null, 2),
+  json: JSON.stringify,
 };
 
-const createFormatter = (formatName) => (formats[formatName] ?? formats.stylish);
+const createFormatter = (formatName) => (formats[formatName]);
 
 export default createFormatter;
