@@ -5,14 +5,8 @@ import buildTree from './buildTree.js';
 import createFormatter from './formatters/index.js';
 import getParser from './parsers.js';
 
-const getFileFormat = (ext) => ({
-  '.yml': 'yaml',
-  '.yaml': 'yaml',
-  '.json': 'json',
-}[ext]);
-
 const getDataFile = (filepath) => {
-  const fileFormat = getFileFormat(path.extname(filepath));
+  const fileFormat = path.extname(filepath).slice(1);
   const parser = getParser(fileFormat);
   return parser(fs.readFileSync(filepath, 'utf-8'));
 };

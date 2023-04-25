@@ -63,7 +63,7 @@ const buildTree = (node1, node2) => {
   const sortedKeys = _.sortBy(keys);
 
   const children = sortedKeys.reduce((acc, key) => {
-    const [rule] = rulesBuildingNodes.filter((el) => el.check(key, node1, node2));
+    const rule = rulesBuildingNodes.find((el) => el.check(key, node1, node2));
     return [...acc, rule.process(key, node1, node2, buildTree)];
   }, []);
 
