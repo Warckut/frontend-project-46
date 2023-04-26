@@ -62,10 +62,10 @@ const buildTree = (node1, node2) => {
   const keys = _.union(Object.keys(node1), Object.keys(node2));
   const sortedKeys = _.sortBy(keys);
 
-  const children = sortedKeys.reduce((acc, key) => {
+  const children = sortedKeys.map((key) => {
     const rule = rulesBuildingNodes.find((el) => el.check(key, node1, node2));
-    return [...acc, rule.process(key, node1, node2, buildTree)];
-  }, []);
+    return rule.process(key, node1, node2, buildTree);
+  });
 
   return children;
 };
